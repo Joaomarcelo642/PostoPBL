@@ -1,0 +1,308 @@
+"""*******************************************************************************
+Autor: João Marcelo Nascimento Fernandes
+Componente Curricular: MI - Algoritmos
+Concluido em: 30/08/2023
+Declaro que este código foi elaborado por mim de forma individual e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+******************************************************************************************"""
+# Programa feito em sistema Windows / Python versão 3.11.4
+# 1 - Varíaveis do 1° posto e validação de dados a seguir
+posto1 = str(input('Insira o nome do 1° posto: '))
+valid_posto1 = 0
+while valid_posto1 == 0:
+    gasolina_posto1 = str(input('Insira o preço da gasolina no 1° posto: ').replace(',' , '.'))
+    etanol_posto1 = str(input('Insira o preço do etanol no 1° posto: ').replace(',' , '.'))
+    diesel_posto1 = str(input('Insira o preço do diesel no 1° posto: ').replace(',' , '.'))
+    verif_g1 = gasolina_posto1.replace('.' , '')
+    verif_e1 = etanol_posto1.replace('.' , '')
+    verif_d1 = diesel_posto1.replace('.' , '')
+    if verif_g1.isnumeric() and verif_e1.isnumeric() and verif_d1.isnumeric():
+        valid_posto1 +=1
+    else:
+        print('Você inseriu um preço invalido, insira-os novamente.')
+gasolina_posto1 = float(gasolina_posto1)
+etanol_posto1 = float(etanol_posto1)
+diesel_posto1 = float(diesel_posto1)
+# 2 - Varíaveis do 2° posto e validação de dados a seguir
+posto2 = str(input('\nInsira o nome do 2° posto: '))
+valid_posto2 = 0
+while valid_posto2 == 0:
+    gasolina_posto2 = str(input('Insira o preço da gasolina no 2° posto: ').replace(',' , '.'))
+    etanol_posto2 = str(input('Insira o preço do etanol no 2° posto: ').replace(',' , '.'))
+    diesel_posto2 = str(input('Insira o preço do diesel no 2° posto: ').replace(',' , '.'))
+    verif_g2 = gasolina_posto2.replace('.' , '')
+    verif_e2 = etanol_posto2.replace('.' , '')
+    verif_d2 = diesel_posto2.replace('.' , '')
+    if verif_g2.isnumeric() and verif_e2.isnumeric() and verif_d2.isnumeric():
+        valid_posto2 += 1
+    else:
+        print('Você inseriu um preço invalido, insira-os novamente.')
+gasolina_posto2 = float(gasolina_posto2)
+etanol_posto2 = float(etanol_posto2)
+diesel_posto2 = float(diesel_posto2)
+# 3 - Varíaveis do 3° posto e validação de dados a seguir
+posto3 = str(input('\nInsira o nome do 3° posto: '))
+valid_posto3 = 0
+while valid_posto3 == 0:
+    gasolina_posto3 = str(input('Insira o preço da gasolina no 3° posto: ').replace(',' , '.'))
+    etanol_posto3 = str(input('Insira o preço do etanol no 3° posto: ').replace(',' , '.'))
+    diesel_posto3 = str(input('Insira o preço do diesel no 3° posto: ').replace(',' , '.'))
+    verif_g3 = gasolina_posto3.replace('.' , '')
+    verif_e3 = etanol_posto3.replace('.' , '')
+    verif_d3 = diesel_posto3.replace('.' , '')
+    if verif_g3.isnumeric() and verif_e3.isnumeric() and verif_d3.isnumeric():
+        valid_posto3 += 1
+    else:
+        print('Você inseriu um preço invalido, insira-os novamente.')
+gasolina_posto3 = float(gasolina_posto3)
+etanol_posto3 = float(etanol_posto3)
+diesel_posto3 = float(diesel_posto3)
+# 4 - Definição dos contadores a seguir 
+contador_consultas = contador_posto1 = contador_posto2 = contador_posto3 = litros_posto1 = litros_posto2 = litros_posto3 = maior_gasolina = menor_gasolina = maior_etanol = menor_etanol = maior_diesel = menor_diesel = saida = 0
+# 5 - Menu a seguir
+while saida == 0:
+    menu = str(input('\n1 - Insira o tipo de combustível e quantos litros você pretende abastecer para que seja apresentado a opção com melhor custo benefício. \n2 - Mostrar a lista de todos os postos e suas informações. \n3 - Sair do menu e encerrar o programa. \nDigite 1, 2 ou 3 para escolher a opção que você deseja: '))
+    if menu == '1':
+        contador_consultas += 1
+        tipo_comb = str(input('\n1 - Gasolina. \n2 - Etanol. \n3 - Diesel. \nDigite 1, 2 ou 3 para escolher o tipo de combustível: '))
+        litros = str(input('Insira quantos litros de combustível você pretende abastecer: ').replace(',' , '.'))
+        verif_litros = litros.replace('.' , '')
+        while not verif_litros.isnumeric():
+            litros = str(input('Você inseriu uma litragem invalida, insira novamente quantos litros de combustível você pretende abastecer: ').replace(',' , '.'))
+            verif_litros = litros.replace('.' , '')
+        litros = float(litros)
+        if tipo_comb == '1':
+            if litros*gasolina_posto1 < litros*gasolina_posto2 and litros*gasolina_posto1 < litros*gasolina_posto3:
+                contador_posto1 += 1
+                litros_posto1 += litros
+                menor_gasolina = f'{posto1} por R$ {gasolina_posto1}'
+                if gasolina_posto2 > gasolina_posto3:
+                    maior_gasolina = f'{posto2} por R$ {gasolina_posto2}'
+                elif gasolina_posto3 > gasolina_posto2:
+                    maior_gasolina = f'{posto3} por R$ {gasolina_posto3}'
+                else:
+                    maior_gasolina = f'{posto2} e {posto3} por R$ {gasolina_posto2}'
+                print(f'O melhor custo benefício está no posto {posto1}, pagando R$ {round(litros*gasolina_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*gasolina_posto2)-(litros*gasolina_posto1) , 2)} e R$ {round((litros*gasolina_posto3)-(litros*gasolina_posto1) , 2)} em relação ao {posto2} e o {posto3}, respectivamente.')
+            elif litros*gasolina_posto2 < litros*gasolina_posto1 and litros*gasolina_posto2 < litros*gasolina_posto3:
+                contador_posto2 += 1
+                litros_posto2 += litros
+                menor_gasolina = f'{posto2} por R$ {gasolina_posto2}'
+                if gasolina_posto1 > gasolina_posto3:
+                    maior_gasolina = f'{posto1} por R$ {gasolina_posto1}'
+                elif gasolina_posto3 > gasolina_posto1:
+                    maior_gasolina = f'{posto3} por R$ {gasolina_posto3}'
+                else:
+                    maior_gasolina = f'{posto1} e {posto3} por R$ {gasolina_posto1}'
+                print(f'O melhor custo benefício está no posto {posto2}, pagando R$ {round(litros*gasolina_posto2 , 2)} pelo abastecimento, economizando R$ {round((litros*gasolina_posto1)-(litros*gasolina_posto2) , 2)} e R$ {round((litros*gasolina_posto3)-(litros*gasolina_posto2) , 2)} em relação ao {posto1} e o {posto3}, respectivamente.')
+            elif litros*gasolina_posto3 < litros*gasolina_posto1 and litros*gasolina_posto3 < litros*gasolina_posto2:
+                contador_posto3 +=1
+                litros_posto3 += litros
+                menor_gasolina = f'{posto3} por R$ {gasolina_posto3}'
+                if gasolina_posto1 > gasolina_posto2:
+                    maior_gasolina = f'{posto1} por R$ {gasolina_posto1}'
+                elif gasolina_posto2 > gasolina_posto1:
+                    maior_gasolina = f'{posto2} por R$ {gasolina_posto2}'
+                else:
+                    maior_gasolina = f'{posto1} e {posto2} por R$ {gasolina_posto1}'
+                print(f'O melhor custo benefício está no posto {posto3}, pagando R$ {round(litros*gasolina_posto3 , 2)} pelo abastecimento, economizando R$ {round((litros*gasolina_posto2)-(litros*gasolina_posto3) , 2)} e R$ {round((litros*gasolina_posto1)-(litros*gasolina_posto3) , 2)} em relação ao {posto2} e o {posto1}, respectivamente.')
+            elif litros*gasolina_posto1 == litros*gasolina_posto2 < litros*gasolina_posto3:
+                contador_posto1 += 1
+                contador_posto2 += 1
+                litros_posto1 += litros
+                litros_posto2 += litros
+                menor_gasolina = f'{posto1} e {posto2} por R$ {gasolina_posto1}'
+                maior_gasolina = f'{posto3} por R$ {gasolina_posto3}'
+                print(f'O melhor custo benefício está no posto {posto1} ou no posto {posto2}, pagando R$ {round(litros*gasolina_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*gasolina_posto3)-(litros*gasolina_posto1) , 2)} em relação ao {posto3}.')
+            elif litros*gasolina_posto1 == litros*gasolina_posto3 < litros*gasolina_posto2:
+                contador_posto1 += 1
+                contador_posto3 += 1
+                litros_posto1 += litros
+                litros_posto3 += litros
+                menor_gasolina = f'{posto1} e {posto3} por R$ {gasolina_posto1}'
+                maior_gasolina = f'{posto2} po R$ {gasolina_posto2}'
+                print(f'O melhor custo benefício está no posto {posto1} ou no posto {posto3}, pagando R$ {round(litros*gasolina_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*gasolina_posto2)-(litros*gasolina_posto1) , 2)} em relação ao {posto2}.')
+            elif litros*gasolina_posto2 == litros*gasolina_posto3 < litros*gasolina_posto1:
+                contador_posto2 += 1
+                contador_posto3 += 1
+                litros_posto2 += litros
+                litros_posto3 += litros
+                menor_gasolina = f'{posto2} e {posto3} por R$ {gasolina_posto2}'
+                maior_gasolina = f'{posto1} por R$ {gasolina_posto1}'
+                print(f'O melhor custo benefício está no posto {posto2} ou no posto {posto3}, pagando R$ {round(litros*gasolina_posto2 , 2)} pelo abastecimento, economizando R$ {round((litros*gasolina_posto1)-(litros*gasolina_posto2) , 2)} em relação ao {posto1}.')
+            elif litros*gasolina_posto1 == litros*gasolina_posto2 == litros*gasolina_posto3:
+                contador_posto1 += 1
+                contador_posto2 += 1
+                contador_posto3 += 1
+                litros_posto1 += litros
+                litros_posto2 += litros
+                litros_posto3 += litros
+                menor_gasolina = maior_gasolina = f'{posto1}, {posto2} e {posto3} por R$ {gasolina_posto1}'
+                print(f'Os 3 postos tem o mesmo custo benefício, pagando R$ {round(litros*gasolina_posto1 , 2)} pelo abastecimento.')
+        elif tipo_comb == '2':
+            if litros*etanol_posto1 < litros*etanol_posto2 and litros*etanol_posto1 < litros*etanol_posto3:
+                contador_posto1 += 1
+                litros_posto1 += litros
+                menor_etanol = f'{posto1} por R$ {etanol_posto1}'
+                if etanol_posto2 > etanol_posto3:
+                    maior_etanol = f'{posto2} por R$ {etanol_posto2}'
+                elif etanol_posto3 > etanol_posto2:
+                    maior_etanol = f'{posto3} por R$ {etanol_posto3}'
+                else:
+                    maior_etanol = f'{posto2} e {posto3} por R$ {etanol_posto2}'
+                print(f'O melhor custo benefício está no posto {posto1}, pagando R$ {round(litros*etanol_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*etanol_posto2)-(litros*etanol_posto1) , 2)} e R$ {round((litros*etanol_posto3)-(litros*etanol_posto1) , 2)} em relação ao {posto2} e o {posto3}, respectivamente.')
+            elif litros*etanol_posto2 < litros*etanol_posto1 and litros*etanol_posto2 < litros*etanol_posto3:
+                contador_posto2 += 1
+                litros_posto2 += litros
+                menor_etanol = f'{posto2} por R$ {etanol_posto2}'
+                if etanol_posto1 > etanol_posto3:
+                    maior_etanol = f'{posto1} por R$ {etanol_posto1}'
+                elif etanol_posto3 > etanol_posto1:
+                    maior_etanol = f'{posto3} por R$ {etanol_posto3}'
+                else:
+                    maior_etanol = f'{posto1} e {posto3} por R$ {etanol_posto1}'
+                print(f'O melhor custo benefício está no posto {posto2}, pagando R$ {round(litros*etanol_posto2 , 2)} pelo abastecimento, economizando R$ {round((litros*etanol_posto1)-(litros*etanol_posto2) , 2)} e R$ {round((litros*etanol_posto3)-(litros*etanol_posto2) , 2)} em relação ao {posto1} e o {posto3}, respectivamente.')
+            elif litros*etanol_posto3 < litros*etanol_posto1 and litros*etanol_posto3 < litros*etanol_posto2:
+                contador_posto3 +=1
+                litros_posto3 += litros
+                menor_etanol = f'{posto3} por R$ {etanol_posto3}'
+                if etanol_posto1 > etanol_posto2:
+                    maior_etanol = f'{posto1} por R$ {etanol_posto1}'
+                elif etanol_posto2 > etanol_posto1:
+                    maior_etanol = f'{posto2} por R$ {etanol_posto2}'
+                else:
+                    maior_etanol = f'{posto1} e {posto2} por R$ {etanol_posto1}'
+                print(f'O melhor custo benefício está no posto {posto3}, pagando R$ {round(litros*etanol_posto3 , 2)} pelo abastecimento, economizando R$ {round((litros*etanol_posto2)-(litros*etanol_posto3) , 2)} e R$ {round((litros*etanol_posto1)-(litros*etanol_posto3) , 2)} em relação ao {posto2} e o {posto1}, respectivamente.')
+            elif litros*etanol_posto1 == litros*etanol_posto2 < litros*etanol_posto3:
+                contador_posto1 += 1
+                contador_posto2 += 1
+                litros_posto1 += litros
+                litros_posto2 += litros
+                menor_etanol = f'{posto1} e {posto2} por R$ {etanol_posto1}'
+                maior_etanol = f'{posto3} por R$ {etanol_posto3}'
+                print(f'O melhor custo benefício está no posto {posto1} ou no posto {posto2}, pagando R$ {round(litros*etanol_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*etanol_posto3)-(litros*etanol_posto1) , 2)} em relação ao {posto3}.')
+            elif litros*etanol_posto2 == litros*etanol_posto3 < litros*etanol_posto1:
+                contador_posto2 += 1
+                contador_posto3 += 1
+                litros_posto2 += litros
+                litros_posto3 += litros
+                menor_etanol = f'{posto2} e {posto3} por R$ {etanol_posto2}'
+                maior_etanol = f'{posto1} por R$ {etanol_posto1}'
+                print(f'O melhor custo benefício está no posto {posto2} ou no posto {posto3}, pagando R$ {round(litros*etanol_posto2 , 2)} pelo abastecimento, economizando R$ {round((litros*etanol_posto1)-(litros*etanol_posto2) , 2)} em relação ao {posto1}.')
+            elif litros*etanol_posto1 == litros*etanol_posto3 < litros*etanol_posto2:
+                contador_posto1 += 1
+                contador_posto3 += 1
+                litros_posto1 += litros
+                litros_posto3 += litros
+                menor_etanol = f'{posto1} e {posto3} por R$ {etanol_posto1}'
+                maior_etanol = f'{posto2} por R$ {etanol_posto2}'
+                print(f'O melhor custo benefício está no posto {posto1} ou no posto {posto3}, pagando R$ {round(litros*etanol_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*etanol_posto2)-(litros*etanol_posto1) , 2)} em relação ao {posto2}.')
+            elif litros*etanol_posto1 == litros*etanol_posto2 == litros*etanol_posto3:
+                contador_posto1 += 1
+                contador_posto2 += 1
+                contador_posto3 += 1
+                litros_posto1 += litros
+                litros_posto2 += litros
+                litros_posto3 += litros
+                menor_etanol = maior_etanol = f'{posto1}, {posto2} e {posto3} por R$ {etanol_posto1}'
+                print(f'Os 3 postos tem o mesmo custo benefício, pagando R$ {round(litros*etanol_posto1 , 2)} pelo abastecimento.')
+        elif tipo_comb == '3':
+            if litros*diesel_posto1 < litros*diesel_posto2 and litros*diesel_posto1 < litros*diesel_posto3:
+                contador_posto1 += 1
+                litros_posto1 += litros
+                menor_diesel = f'{posto1} por R$ {diesel_posto1}'
+                if diesel_posto2 > diesel_posto3:
+                    maior_diesel = f'{posto2} por R$ {diesel_posto2}'
+                elif diesel_posto3 > diesel_posto2:
+                    maior_diesel = f'{posto3} por R$ {diesel_posto3}'
+                else:
+                    maior_diesel = f'{posto2} e {posto3} por R$ {diesel_posto2}'
+                print(f'O melhor custo benefício está no posto {posto1}, pagando R$ {round(litros*diesel_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*diesel_posto2)-(litros*diesel_posto1) , 2)} e R$ {round((litros*diesel_posto3)-(litros*diesel_posto1) , 2)} em relação ao {posto2} e o {posto3}, respectivamente.')
+            elif litros*diesel_posto2 < litros*diesel_posto1 and litros*diesel_posto2 < litros*diesel_posto3:
+                contador_posto2 += 1
+                litros_posto2 += litros
+                menor_diesel = f'{posto2} por R$ {diesel_posto2}'
+                if diesel_posto1 > diesel_posto3:
+                    maior_diesel = f'{posto1} por R$ {diesel_posto1}'
+                elif diesel_posto3 > diesel_posto1:
+                    maior_diesel = f'{posto3} por R$ {diesel_posto3}'
+                else:
+                    maior_diesel = f'{posto1} e {posto3} por R$ {diesel_posto1}'
+                print(f'O melhor custo benefício está no posto {posto2}, pagando R$ {round(litros*diesel_posto2 , 2)} pelo abastecimento, economizando R$ {round((litros*diesel_posto1)-(litros*diesel_posto2) , 2)} e R$ {round((litros*diesel_posto3)-(litros*diesel_posto2) , 2)} em relação ao {posto1} e o {posto3}, respectivamente.')
+            elif litros*diesel_posto3 < litros*diesel_posto1 and litros*diesel_posto3 < litros*diesel_posto2:
+                contador_posto3 +=1
+                litros_posto3 += litros
+                menor_diesel = f'{posto3} por R$ {diesel_posto3}'
+                if diesel_posto1 > diesel_posto2:
+                    maior_diesel = f'{posto1} por R$ {diesel_posto1}'
+                elif diesel_posto2 > diesel_posto1:
+                    maior_diesel = f'{posto2} por R$ {diesel_posto2}'
+                else:
+                    maior_diesel = f'{posto1} e {posto2} por R$ {diesel_posto1}'
+                print(f'O melhor custo benefício está no posto {posto3}, pagando R$ {round(litros*diesel_posto3 , 2)} pelo abastecimento, economizando R$ {round((litros*diesel_posto2)-(litros*diesel_posto3) , 2)} e R$ {round((litros*diesel_posto1)-(litros*diesel_posto3) , 2)} em relação ao {posto2} e o {posto1}, respectivamente.')
+            elif litros*diesel_posto1 == litros*diesel_posto2 < litros*diesel_posto3:
+                contador_posto1 += 1
+                contador_posto2 += 1
+                litros_posto1 += litros
+                litros_posto2 += litros
+                menor_diesel = f'{posto1} e {posto2} por R$ {diesel_posto1}'
+                maior_diesel = f'{posto3} por R$ {diesel_posto3}'
+                print(f'O melhor custo benefício está no posto {posto1} ou no posto {posto2}, pagando R$ {round(litros*diesel_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*diesel_posto3)-(litros*diesel_posto1) , 2)} em relação ao {posto3}.')
+            elif litros*diesel_posto2 == litros*diesel_posto3 < litros*diesel_posto1:
+                contador_posto2 += 1
+                contador_posto3 += 1
+                litros_posto2 += litros
+                litros_posto3 += litros
+                menor_diesel = f'{posto2} e {posto3} por R$ {diesel_posto2}'
+                maior_diesel = f'{posto1} por R$ {diesel_posto1}'
+                print(f'O melhor custo benefício está no posto {posto2} ou no posto {posto3}, pagando R$ {round(litros*diesel_posto2 , 2)} pelo abastecimento, economizando R$ {round((litros*diesel_posto1)-(litros*diesel_posto2) , 2)} em relação ao {posto1}.')
+            elif litros*diesel_posto1 == litros*diesel_posto3 < litros*diesel_posto2:
+                contador_posto1 += 1
+                contador_posto3 += 1
+                litros_posto1 += litros
+                litros_posto3 += litros
+                menor_diesel = f'{posto1} e {posto3} por R$ {diesel_posto1}'
+                maior_diesel = f'{posto2} por R$ {diesel_posto2}'
+                print(f'O melhor custo benefício está no posto {posto1} ou no posto {posto3}, pagando R$ {round(litros*diesel_posto1 , 2)} pelo abastecimento, economizando R$ {round((litros*diesel_posto2)-(litros*diesel_posto1) , 2)} em relação ao {posto2}.')
+            elif litros*diesel_posto1 == litros*diesel_posto2 == litros*diesel_posto3:
+                contador_posto1 += 1
+                contador_posto2 += 1
+                contador_posto3 += 1
+                litros_posto1 += litros
+                litros_posto2 += litros
+                litros_posto3 += litros
+                menor_diesel = maior_diesel = f'{posto1}, {posto2} e {posto3} por R$ {diesel_posto1}'
+                print(f'Os 3 postos tem o mesmo custo benefício, pagando R$ {round(litros*diesel_posto1 , 2)} pelo abastecimento.')
+        else:
+            print('Você digitou um número inválido, refaça a consulta e insira um número válido.')
+    elif menu == '2':
+        contador_consultas += 1
+        print(f'{posto1}: \nGasolina: R$ {gasolina_posto1} por litro \nEtanol: R$ {etanol_posto1} por litro\nDiesel: R$ {diesel_posto1} por litro \n\n{posto2}: \nGasolina: R$ {gasolina_posto2} por litro \nEtanol: R$ {etanol_posto2} por litro\nDiesel: R$ {diesel_posto2} por litro \n\n{posto3}: \nGasolina: R$ {gasolina_posto3} por litro \nEtanol: R$ {etanol_posto3} por litro\nDiesel: R$ {diesel_posto3} por litro')
+    elif menu == '3':
+        saida += 1
+        print('\nPrograma encerrado')
+    else:
+        print('Você digitou um número inválido, refaça a consulta e insira um número válido.')
+# 6 - Relatório a seguir
+print('\nRelatório: \n\n')
+print(f'O número total de consultas realizadas foi: {contador_consultas}. \n\nO número de vezes que o {posto1} apresentou o menor valor de combustivel foi: {contador_posto1} \nO número de vezes que o {posto2} apresentou o menor valor de combustivel foi: {contador_posto2} \nO número de vezes que o {posto3} apresentou o menor valor de combustivel foi: {contador_posto3}')
+if contador_posto1 == 0:
+    contador_posto1 -= 1
+if contador_posto2 == 0:
+    contador_posto2 -= 1
+if contador_posto3 == 0:
+    contador_posto3 -= 1
+media_posto1 = litros_posto1/contador_posto1
+media_posto2 = litros_posto2/contador_posto2
+media_posto3 = litros_posto3/contador_posto3
+if contador_posto1 == -1:
+    media_posto1 = 0
+if contador_posto2 == -1:
+    media_posto2 = 0
+if contador_posto3 == -1:
+    media_posto3 = 0
+print(f'\nA média de litros consultados no {posto1} foi: {round(media_posto1, 2)} \nA média de litros consultados no {posto2} foi: {round(media_posto2, 2)} \nA média de litros consultados no {posto3} foi: {round(media_posto3, 2)}')
+print(f'\nMaior preço da gasolina: {maior_gasolina} \nMenor preço da gasolina: {menor_gasolina} \n\nMaior preço do etanol: {maior_etanol} \nMenor preço do etanol: {menor_etanol} \n\nMaior preço do diesel: {maior_diesel} \nMenor preço do diesel: {menor_diesel}')
+# 7 - Fim do programa
