@@ -18,5 +18,13 @@ Este programa foi desenvolvido em Python 3.11.4 e pode ser executado em sistemas
 2. Baixe o código-fonte do programa.
 3. Execute o script Python.
 
+## Uso
+
+Ao rodar o programa, o usuário deverá inserir os seguintes dados:
+
+1. Nome e preços da gasolina, etanol e diesel em três diferentes postos.
+2. Quantidade de litros que deseja abastecer.
+3. O programa fornecerá o melhor posto para abastecimento de acordo com o tipo de combustível selecionado e os preços informados.
+
 ```bash
 python comparador_combustivel.py
