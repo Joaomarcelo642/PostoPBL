@@ -27,7 +27,7 @@ Ao rodar o programa, o usuário deverá inserir os seguintes dados:
 3. O programa fornecerá o melhor posto para abastecimento de acordo com o tipo de combustível selecionado e os preços informados.
 
 Exemplo de execução:
-'''bash
+```bash
 Insira o nome do 1° posto: Posto A
 Insira o preço da gasolina no 1° posto: 5,39
 Insira o preço do etanol no 1° posto: 3,79
