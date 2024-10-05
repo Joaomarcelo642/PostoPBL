@@ -26,5 +26,12 @@ Ao rodar o programa, o usuário deverá inserir os seguintes dados:
 2. Quantidade de litros que deseja abastecer.
 3. O programa fornecerá o melhor posto para abastecimento de acordo com o tipo de combustível selecionado e os preços informados.
 
-```bash
-python comparador_combustivel.py
+Exemplo de execução:
+'''bash
+Insira o nome do 1° posto: Posto A
+Insira o preço da gasolina no 1° posto: 5,39
+Insira o preço do etanol no 1° posto: 3,79
+Insira o preço do diesel no 1° posto: 6,29
+...
+O melhor custo benefício está no posto Posto A, pagando R$ 53,90 pelo abastecimento.
+
